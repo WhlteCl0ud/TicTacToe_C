@@ -82,14 +82,14 @@ int main()
 }
 void initialised_chess_board(char *chess_board)
 {
-	int i,j;
+	int i ;
 	for (i = 0; i < 9; i++)
 		chess_board[i] = ' ';
 }
 void initialised_judge_data(int judge_data[][DATA_SIZE])
 {
 	int i, j;
-	for (i = 0; i < 9; i++)
+	for (i = 0; i < SIZE; i++)
 		for (j = 0; j < DATA_SIZE; j++)
 			judge_data[i][j] = -1;
 }
@@ -209,7 +209,6 @@ int PvE_mode(void)
 					break;
 			if (chess_num == 9)
 				break;
-
 			chess_board[AI_input(COORD, judge_data, chess_num, who_go_first) - 1] = chess_symbol[who_go_first];
 			print_chess(chess_board);
 			change_num_to_COORD(COORD, chess_board);
@@ -308,7 +307,6 @@ int AI_input(const char COORD[][3], int judge_data[][DATA_SIZE], int chess_num, 
 {
 	int time = 0;
 	int chess_x, chess_y;
-	int i, j;
 	chess_x = chess_y = -1;
 	char AI_symbol = ((who_go_first == 1) ? 'x' : '0');
 	char user_symbol = ((who_go_first == 1) ? '0' : 'x');
@@ -446,8 +444,7 @@ int place_chess_judge(const char COORD[][3], int judge_data[][DATA_SIZE], int si
 }
 void make_judge_data_single(int judge_data[][DATA_SIZE])
 {
-	int i, j, x, y, m, n;
-	int temp;
+	int m, n;
 	for (m = 0; m < SIZE-1; m++)
 	{
 		for (n = m +1; n < SIZE; n++)
